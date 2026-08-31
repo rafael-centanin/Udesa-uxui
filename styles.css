@@ -253,8 +253,9 @@ main {
 
 .entry__right {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1.25rem;
 }
 
 .entry__shot {
@@ -264,9 +265,8 @@ main {
   overflow: hidden;
   position: relative;
   min-height: 200px;
-  width: 100%;
-  max-width: 260px;
-  align-self: flex-start;
+  width: 220px;
+  flex: 0 0 220px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -297,6 +297,8 @@ main {
 
 .entry__explanation {
   font-size: 0.98rem;
+  flex: 1 1 0%;
+  min-width: 0;
 }
 
 .entry__explanation.is-empty {
@@ -393,6 +395,11 @@ main {
   .tabs__label { font-size: 0.86rem; }
   .tabs__count { margin-left: 0; }
   .tabs__btn { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
+}
+
+@media (max-width: 520px) {
+  .entry__right { flex-direction: column; }
+  .entry__shot { width: 100%; max-width: 260px; flex: 0 0 auto; }
 }
 
 /* ============================================================
