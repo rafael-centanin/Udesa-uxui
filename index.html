@@ -44,19 +44,25 @@
   </button>
 </nav>
 
+<div class="summary" id="summary-leyes">
+  <button class="summary__btn summary__btn--all is-active" data-filter="todos">Todos</button>
+  <button class="summary__btn summary__btn--cumple" data-filter="cumple"><span class="summary__dot summary__dot--cumple"></span>Cumple <strong id="sum-cumple">0</strong></button>
+  <button class="summary__btn summary__btn--rompe" data-filter="rompe"><span class="summary__dot summary__dot--rompe"></span>Rompe <strong id="sum-rompe">0</strong></button>
+</div>
+
 <main>
   <section id="panel-leyes" class="panel is-active" aria-labelledby="tab-btn-leyes">
-    <div class="panel__intro">
-      <p><strong>Cómo se completa esta ficha:</strong> por cada ley, indicá si el producto la <em>cumple</em> o la <em>rompe</em> en un punto concreto de la navegación, subí la captura correspondiente a <code>/screenshots</code> y escribí 1-2 frases respondiendo la pregunta guía. Cobertura mínima sugerida: 8 de las 14. Editá el contenido en <code>data.js</code>.</p>
+    <div class="panel__layout">
+      <nav class="index" id="index-leyes" aria-label="Índice de leyes"></nav>
+      <div class="ledger" id="ledger-leyes"></div>
     </div>
-    <div class="ledger" id="ledger-leyes"></div>
   </section>
 
   <section id="panel-heuristicas" class="panel" aria-labelledby="tab-btn-heuristicas">
-    <div class="panel__intro">
-      <p><strong>Cómo se completa esta ficha:</strong> a diferencia del tablero de leyes, acá se evalúan las <strong>10 heurísticas completas, sin excepción</strong>. Por cada una, asigná una severidad de 0 (no es un problema) a 4 (catástrofe de usabilidad), subí la captura del punto exacto y explicá qué pasa, por qué, y qué impacto tiene en la persona usuaria. Editá el contenido en <code>data.js</code>.</p>
+    <div class="panel__layout">
+      <nav class="index" id="index-heuristicas" aria-label="Índice de heurísticas"></nav>
+      <div class="ledger" id="ledger-heuristicas"></div>
     </div>
-    <div class="ledger" id="ledger-heuristicas"></div>
   </section>
 </main>
 
