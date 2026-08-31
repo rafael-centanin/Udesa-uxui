@@ -1,0 +1,257 @@
+/* ============================================================
+   DATA — Editá este archivo con el análisis real de tu equipo.
+   ============================================================
+   Cada objeto es una fila del tablero. Instrucciones por campo:
+
+   estado (Tablero 1 — Leyes UX):
+     "cumple"    -> se respeta la ley
+     "rompe"     -> se incumple la ley
+     "pendiente" -> todavía no analizado (se ve gris/punteado)
+
+   severidad (Tablero 2 — Heurísticas): número 0 a 4, o null si
+   todavía no se evaluó (se ve como "pendiente").
+
+   imagen: ruta a tu captura dentro de la carpeta /screenshots.
+   Si no existe el archivo, se muestra un placeholder con
+   instrucciones — no rompe nada mientras completás.
+
+   explicacion: 1-2 frases. Respondé la pregunta guía: qué pasa
+   y por qué (leyes), o qué pasa / por qué / qué impacto tiene
+   en la persona usuaria (heurísticas).
+   ============================================================ */
+
+const LEYES_UX = [
+  {
+    id: "hick",
+    numero: 1,
+    nombre: "Ley de Hick",
+    definicion: "El tiempo para tomar una decisión aumenta con la cantidad de alternativas disponibles.",
+    preguntaGuia: "¿Hay un punto donde el usuario enfrenta demasiadas opciones a la vez? ¿Cómo se reduce (o no) esa carga?",
+    estado: "pendiente",
+    imagen: "screenshots/01-hick.png",
+    explicacion: ""
+  },
+  {
+    id: "fitts",
+    numero: 2,
+    nombre: "Ley de Fitts",
+    definicion: "El tiempo para alcanzar un objetivo depende de su tamaño y de la distancia hasta él.",
+    preguntaGuia: "¿Los elementos más usados son fáciles de tocar/clickear? ¿Hay algún target chico o mal ubicado?",
+    estado: "pendiente",
+    imagen: "screenshots/02-fitts.png",
+    explicacion: ""
+  },
+  {
+    id: "tesler",
+    numero: 3,
+    nombre: "Ley de Tesler",
+    definicion: "Toda tarea tiene una complejidad mínima irreductible; solo se puede mover, no eliminar.",
+    preguntaGuia: "¿Dónde asume la interfaz la complejidad para que el usuario no tenga que hacerlo?",
+    estado: "pendiente",
+    imagen: "screenshots/03-tesler.png",
+    explicacion: ""
+  },
+  {
+    id: "jakob",
+    numero: 4,
+    nombre: "Ley de Jakob",
+    definicion: "Los usuarios esperan que tu interfaz se comporte como las que ya conocen.",
+    preguntaGuia: "¿Qué patrones familiares usa (o rompe) la navegación, los íconos, los gestos?",
+    estado: "pendiente",
+    imagen: "screenshots/04-jakob.png",
+    explicacion: ""
+  },
+  {
+    id: "miller",
+    numero: 5,
+    nombre: "Ley de Miller",
+    definicion: "Las personas retienen entre 5 y 9 elementos en la memoria de trabajo.",
+    preguntaGuia: "¿Hay listas o menús que respeten ese límite? ¿Hay alguno que lo exceda sin agrupar?",
+    estado: "pendiente",
+    imagen: "screenshots/05-miller.png",
+    explicacion: ""
+  },
+  {
+    id: "estetica-usabilidad",
+    numero: 6,
+    nombre: "Efecto Estética-Usabilidad",
+    definicion: "Un diseño estéticamente agradable se percibe como más usable, aunque no lo sea.",
+    preguntaGuia: "¿Hay una pantalla linda que 'tapa' un problema real de uso, o al revés?",
+    estado: "pendiente",
+    imagen: "screenshots/06-estetica.png",
+    explicacion: ""
+  },
+  {
+    id: "doherty",
+    numero: 7,
+    nombre: "Umbral de Doherty",
+    definicion: "Cuando el sistema responde en menos de 400 ms, aumenta la productividad y el engagement.",
+    preguntaGuia: "¿Dónde se nota una demora? ¿Hay feedback de carga mientras se espera?",
+    estado: "pendiente",
+    imagen: "screenshots/07-doherty.png",
+    explicacion: ""
+  },
+  {
+    id: "peak-end",
+    numero: 8,
+    nombre: "Efecto Peak-End",
+    definicion: "Los usuarios juzgan una experiencia sobre todo por su punto más intenso y por cómo termina.",
+    preguntaGuia: "¿Cómo termina un flujo importante? ¿Ese cierre deja una buena o mala última impresión?",
+    estado: "pendiente",
+    imagen: "screenshots/08-peakend.png",
+    explicacion: ""
+  },
+  {
+    id: "posicion-serial",
+    numero: 9,
+    nombre: "Efecto de Posición Serial",
+    definicion: "Los usuarios recuerdan mejor el primer y el último elemento de una lista.",
+    preguntaGuia: "¿Qué está ubicado al principio o al final de una lista clave? ¿Es lo más importante?",
+    estado: "pendiente",
+    imagen: "screenshots/09-posicionserial.png",
+    explicacion: ""
+  },
+  {
+    id: "von-restorff",
+    numero: 10,
+    nombre: "Efecto Von Restorff",
+    definicion: "Un elemento que se destaca visualmente del resto se recuerda mejor.",
+    preguntaGuia: "¿Algo se distingue a propósito del resto? ¿Debería destacarse algo que hoy pasa desapercibido?",
+    estado: "pendiente",
+    imagen: "screenshots/10-vonrestorff.png",
+    explicacion: ""
+  },
+  {
+    id: "zeigarnik",
+    numero: 11,
+    nombre: "Efecto Zeigarnik",
+    definicion: "Las personas recuerdan mejor las tareas incompletas que las completas.",
+    preguntaGuia: "¿Hay algún indicador de tarea pendiente que motive a volver a completarla?",
+    estado: "pendiente",
+    imagen: "screenshots/11-zeigarnik.png",
+    explicacion: ""
+  },
+  {
+    id: "postel",
+    numero: 12,
+    nombre: "Ley de Postel",
+    definicion: "Sé flexible con lo que aceptás como entrada, y estricto con lo que producís como salida.",
+    preguntaGuia: "¿Un formulario o input rechaza casos válidos por ser demasiado rígido?",
+    estado: "pendiente",
+    imagen: "screenshots/12-postel.png",
+    explicacion: ""
+  },
+  {
+    id: "occam",
+    numero: 13,
+    nombre: "Navaja de Occam",
+    definicion: "Ante opciones de diseño igualmente válidas, la más simple suele ser la mejor.",
+    preguntaGuia: "¿Dónde se eligió la solución más simple posible? ¿Dónde se complicó de más algo simple?",
+    estado: "pendiente",
+    imagen: "screenshots/13-occam.png",
+    explicacion: ""
+  },
+  {
+    id: "parkinson",
+    numero: 14,
+    nombre: "Ley de Parkinson",
+    definicion: "El trabajo se expande hasta ocupar el tiempo disponible para completarlo.",
+    preguntaGuia: "¿Hay algún límite de tiempo (real o percibido) que cambie cómo se comporta el usuario?",
+    estado: "pendiente",
+    imagen: "screenshots/14-parkinson.png",
+    explicacion: ""
+  }
+];
+
+const HEURISTICAS_NIELSEN = [
+  {
+    id: "visibilidad",
+    numero: 1,
+    nombre: "Visibilidad del estado del sistema",
+    definicion: "El sistema debe mantener informado al usuario sobre lo que está pasando, con feedback apropiado en tiempo razonable.",
+    severidad: null,
+    imagen: "screenshots/h01-visibilidad.png",
+    explicacion: ""
+  },
+  {
+    id: "mundo-real",
+    numero: 2,
+    nombre: "Correspondencia entre el sistema y el mundo real",
+    definicion: "El sistema debe hablar el lenguaje del usuario, con palabras y conceptos familiares en vez de jerga técnica.",
+    severidad: null,
+    imagen: "screenshots/h02-mundoreal.png",
+    explicacion: ""
+  },
+  {
+    id: "control-libertad",
+    numero: 3,
+    nombre: "Control y libertad del usuario",
+    definicion: "Los usuarios necesitan una 'salida de emergencia' clara para deshacer acciones o abandonar un flujo por error.",
+    severidad: null,
+    imagen: "screenshots/h03-control.png",
+    explicacion: ""
+  },
+  {
+    id: "consistencia",
+    numero: 4,
+    nombre: "Consistencia y estándares",
+    definicion: "Los usuarios no deberían dudar si distintas palabras, situaciones o acciones significan lo mismo.",
+    severidad: null,
+    imagen: "screenshots/h04-consistencia.png",
+    explicacion: ""
+  },
+  {
+    id: "prevencion-errores",
+    numero: 5,
+    nombre: "Prevención de errores",
+    definicion: "Es mejor prevenir que ocurra un error que generar un buen mensaje una vez que ya ocurrió.",
+    severidad: null,
+    imagen: "screenshots/h05-prevencion.png",
+    explicacion: ""
+  },
+  {
+    id: "reconocer-recordar",
+    numero: 6,
+    nombre: "Reconocimiento antes que recuerdo",
+    definicion: "Minimizar la carga de memoria mostrando objetos, acciones y opciones visibles en vez de exigir que el usuario las recuerde.",
+    severidad: null,
+    imagen: "screenshots/h06-reconocer.png",
+    explicacion: ""
+  },
+  {
+    id: "flexibilidad",
+    numero: 7,
+    nombre: "Flexibilidad y eficiencia de uso",
+    definicion: "Ofrecer aceleradores para usuarios expertos sin perjudicar a los usuarios novatos.",
+    severidad: null,
+    imagen: "screenshots/h07-flexibilidad.png",
+    explicacion: ""
+  },
+  {
+    id: "estetico-minimalista",
+    numero: 8,
+    nombre: "Diseño estético y minimalista",
+    definicion: "La interfaz no debe contener información irrelevante o que se use raramente.",
+    severidad: null,
+    imagen: "screenshots/h08-minimalista.png",
+    explicacion: ""
+  },
+  {
+    id: "recuperacion-errores",
+    numero: 9,
+    nombre: "Ayudar a reconocer, diagnosticar y recuperarse de errores",
+    definicion: "Los mensajes de error deben estar en lenguaje claro, indicar el problema exacto y sugerir una solución.",
+    severidad: null,
+    imagen: "screenshots/h09-recuperacion.png",
+    explicacion: ""
+  },
+  {
+    id: "ayuda-documentacion",
+    numero: 10,
+    nombre: "Ayuda y documentación",
+    definicion: "La ayuda debe ser fácil de encontrar, centrada en la tarea del usuario y no demasiado extensa.",
+    severidad: null,
+    imagen: "screenshots/h10-ayuda.png",
+    explicacion: ""
+  }
+];
