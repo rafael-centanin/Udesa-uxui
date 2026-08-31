@@ -27,9 +27,9 @@ const LEYES_UX = [
     nombre: "Ley de Hick",
     definicion: "El tiempo para tomar una decisión aumenta con la cantidad de alternativas disponibles.",
     preguntaGuia: "¿Hay un punto donde el usuario enfrenta demasiadas opciones a la vez? ¿Cómo se reduce (o no) esa carga?",
-    estado: "pendiente",
+    estado: "rompe",
     imagen: "screenshots/01-hick.png",
-    explicacion: ""
+    explicacion: "En \"Trámites\" los distintos beneficios (subsidios, exención de peajes, etc.) se listan uno debajo del otro sin categorías ni buscador, obligando a leer cada tarjeta para saber si aplica, en vez de filtrar de entrada."
   },
   {
     id: "fitts",
@@ -37,9 +37,9 @@ const LEYES_UX = [
     nombre: "Ley de Fitts",
     definicion: "El tiempo para alcanzar un objetivo depende de su tamaño y de la distancia hasta él.",
     preguntaGuia: "¿Los elementos más usados son fáciles de tocar/clickear? ¿Hay algún target chico o mal ubicado?",
-    estado: "pendiente",
+    estado: "cumple",
     imagen: "screenshots/02-fitts.png",
-    explicacion: ""
+    explicacion: "En \"Teléfonos\" cada número de emergencia es una fila de ancho completo con ícono de llamada, pensada para tocarse rápido y sin margen de error en una situación urgente."
   },
   {
     id: "tesler",
@@ -47,9 +47,9 @@ const LEYES_UX = [
     nombre: "Ley de Tesler",
     definicion: "Toda tarea tiene una complejidad mínima irreductible; solo se puede mover, no eliminar.",
     preguntaGuia: "¿Dónde asume la interfaz la complejidad para que el usuario no tenga que hacerlo?",
-    estado: "pendiente",
+    estado: "cumple",
     imagen: "screenshots/03-tesler.png",
-    explicacion: ""
+    explicacion: "Pedir el DNI digital implica validarlo contra RENAPER, pero al usuario se le presenta como un solo botón (\"Solicitar DNI Digital\"): la app absorbe la complejidad de la validación en vez de pasársela."
   },
   {
     id: "jakob",
@@ -57,9 +57,9 @@ const LEYES_UX = [
     nombre: "Ley de Jakob",
     definicion: "Los usuarios esperan que tu interfaz se comporte como las que ya conocen.",
     preguntaGuia: "¿Qué patrones familiares usa (o rompe) la navegación, los íconos, los gestos?",
-    estado: "pendiente",
+    estado: "cumple",
     imagen: "screenshots/04-jakob.png",
-    explicacion: ""
+    explicacion: "La barra inferior fija (Inicio / Novedades / Teléfonos / Tina) y el header con flecha de \"volver\" se repiten en toda la app, igual que en cualquier app de banco o de gobierno que el usuario ya conoce."
   },
   {
     id: "miller",
@@ -67,9 +67,9 @@ const LEYES_UX = [
     nombre: "Ley de Miller",
     definicion: "Las personas retienen entre 5 y 9 elementos en la memoria de trabajo.",
     preguntaGuia: "¿Hay listas o menús que respeten ese límite? ¿Hay alguno que lo exceda sin agrupar?",
-    estado: "pendiente",
+    estado: "cumple",
     imagen: "screenshots/05-miller.png",
-    explicacion: ""
+    explicacion: "\"Suscribir servicios\" agrupa todos los trámites posibles en solo 4 categorías plegables (Documentos, Vehículos, Salud, Trabajo) en vez de mostrar la lista completa de golpe, respetando el límite de memoria de trabajo."
   },
   {
     id: "estetica-usabilidad",
@@ -77,9 +77,9 @@ const LEYES_UX = [
     nombre: "Efecto Estética-Usabilidad",
     definicion: "Un diseño estéticamente agradable se percibe como más usable, aunque no lo sea.",
     preguntaGuia: "¿Hay una pantalla linda que 'tapa' un problema real de uso, o al revés?",
-    estado: "pendiente",
+    estado: "cumple",
     imagen: "screenshots/06-estetica.png",
-    explicacion: ""
+    explicacion: "El header de \"Mi perfil\" (foto grande, tilde de verificado, tipografía prolija) transmite confianza institucional de entrada, lo que predispone a percibir el resto de la app como más seria y confiable aunque no se haya probado nada todavía."
   },
   {
     id: "doherty",
@@ -107,9 +107,9 @@ const LEYES_UX = [
     nombre: "Efecto de Posición Serial",
     definicion: "Los usuarios recuerdan mejor el primer y el último elemento de una lista.",
     preguntaGuia: "¿Qué está ubicado al principio o al final de una lista clave? ¿Es lo más importante?",
-    estado: "pendiente",
+    estado: "cumple",
     imagen: "screenshots/09-posicionserial.png",
-    explicacion: ""
+    explicacion: "En \"Teléfonos\", el 911 (el número más general y más usado) ocupa el primer lugar de la lista, aprovechando el efecto de primacía para que sea lo primero que se recuerde en una emergencia."
   },
   {
     id: "von-restorff",
@@ -117,9 +117,9 @@ const LEYES_UX = [
     nombre: "Efecto Von Restorff",
     definicion: "Un elemento que se destaca visualmente del resto se recuerda mejor.",
     preguntaGuia: "¿Algo se distingue a propósito del resto? ¿Debería destacarse algo que hoy pasa desapercibido?",
-    estado: "pendiente",
+    estado: "rompe",
     imagen: "screenshots/10-vonrestorff.png",
-    explicacion: ""
+    explicacion: "En \"Seguridad y privacidad\", \"Eliminar cuenta\" (una acción destructiva e irreversible) tiene exactamente el mismo estilo visual que \"Cambiar contraseña\" (una acción inofensiva): nada la distingue como más riesgosa."
   },
   {
     id: "zeigarnik",
@@ -127,9 +127,9 @@ const LEYES_UX = [
     nombre: "Efecto Zeigarnik",
     definicion: "Las personas recuerdan mejor las tareas incompletas que las completas.",
     preguntaGuia: "¿Hay algún indicador de tarea pendiente que motive a volver a completarla?",
-    estado: "pendiente",
+    estado: "cumple",
     imagen: "screenshots/11-zeigarnik.png",
-    explicacion: ""
+    explicacion: "En \"Mi perfil\", la etiqueta rosa \"Verificá tu número\" queda pegada al lado del teléfono hasta que el usuario complete la verificación, funcionando como recordatorio persistente de una tarea a medio terminar."
   },
   {
     id: "postel",
@@ -137,9 +137,9 @@ const LEYES_UX = [
     nombre: "Ley de Postel",
     definicion: "Sé flexible con lo que aceptás como entrada, y estricto con lo que producís como salida.",
     preguntaGuia: "¿Un formulario o input rechaza casos válidos por ser demasiado rígido?",
-    estado: "pendiente",
+    estado: "rompe",
     imagen: "screenshots/12-postel.png",
-    explicacion: ""
+    explicacion: "En \"Vehículos\", ante el caso real de viajar al exterior sin cédula física ni patente, la app no ofrece una solución dentro del flujo (por ejemplo, un comprobante digital): directamente deriva a comunicarse con la DNRPA por otro canal."
   },
   {
     id: "occam",
@@ -147,9 +147,9 @@ const LEYES_UX = [
     nombre: "Navaja de Occam",
     definicion: "Ante opciones de diseño igualmente válidas, la más simple suele ser la mejor.",
     preguntaGuia: "¿Dónde se eligió la solución más simple posible? ¿Dónde se complicó de más algo simple?",
-    estado: "pendiente",
+    estado: "rompe",
     imagen: "screenshots/13-occam.png",
-    explicacion: ""
+    explicacion: "Sacar un turno tiene tres puntos de entrada distintos (el banner de Inicio, la categoría \"Turnos\" del home, y el botón \"Ir a Turnos\" dentro de \"Trámites\"): tres caminos para la misma acción en vez del más simple, uno solo."
   },
   {
     id: "parkinson",
