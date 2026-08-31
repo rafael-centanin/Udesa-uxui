@@ -87,9 +87,9 @@ const LEYES_UX = [
     nombre: "Umbral de Doherty",
     definicion: "Cuando el sistema responde en menos de 400 ms, aumenta la productividad y el engagement.",
     preguntaGuia: "¿Dónde se nota una demora? ¿Hay feedback de carga mientras se espera?",
-    estado: "pendiente",
+    estado: "rompe",
     imagen: "screenshots/07-doherty.png",
-    explicacion: ""
+    explicacion: "En \"Salud\" el ícono de recarga junto al título sugiere que los datos de cobertura se piden a otro sistema (Ministerio de Salud), pero no hay spinner, skeleton ni ningún indicio de carga: si la consulta tarda, el usuario no tiene forma de saber si la app está trabajando o se colgó."
   },
   {
     id: "peak-end",
@@ -97,9 +97,9 @@ const LEYES_UX = [
     nombre: "Efecto Peak-End",
     definicion: "Los usuarios juzgan una experiencia sobre todo por su punto más intenso y por cómo termina.",
     preguntaGuia: "¿Cómo termina un flujo importante? ¿Ese cierre deja una buena o mala última impresión?",
-    estado: "pendiente",
+    estado: "cumple",
     imagen: "screenshots/08-peakend.png",
-    explicacion: ""
+    explicacion: "La pantalla de \"Cobros\" cierra con una tarjeta de \"¿Necesitás ayuda?\" que ofrece contacto directo con Capital Humano antes de que el usuario tenga que buscarlo por su cuenta, dejando una última impresión de acompañamiento en vez de terminar en un callejón sin salida."
   },
   {
     id: "posicion-serial",
@@ -157,9 +157,9 @@ const LEYES_UX = [
     nombre: "Ley de Parkinson",
     definicion: "El trabajo se expande hasta ocupar el tiempo disponible para completarlo.",
     preguntaGuia: "¿Hay algún límite de tiempo (real o percibido) que cambie cómo se comporta el usuario?",
-    estado: "pendiente",
+    estado: "rompe",
     imagen: "screenshots/14-parkinson.png",
-    explicacion: ""
+    explicacion: "En el Home, tanto el cartel de turnos (\"No tenés turnos programados\") como el de credenciales (\"¡Todas tus credenciales están al día!\") no muestran ninguna fecha límite ni vencimiento, así que no hay ningún límite de tiempo real ni percibido que empuje al usuario a actuar antes de que sea tarde."
   }
 ];
 
@@ -169,89 +169,89 @@ const HEURISTICAS_NIELSEN = [
     numero: 1,
     nombre: "Visibilidad del estado del sistema",
     definicion: "El sistema debe mantener informado al usuario sobre lo que está pasando, con feedback apropiado en tiempo razonable.",
-    severidad: null,
+    severidad: 2,
     imagen: "screenshots/h01-visibilidad.png",
-    explicacion: ""
+    explicacion: "En \"Novedades\" las noticias no tienen fecha de publicación ni ninguna marca de \"nuevo\", por lo que el usuario no puede saber si lo que está leyendo es de hoy o de hace tres meses. El impacto es que pierde confianza en la sección y puede dejar de revisarla porque no sabe si vale la pena volver a mirarla."
   },
   {
     id: "mundo-real",
     numero: 2,
     nombre: "Correspondencia entre el sistema y el mundo real",
     definicion: "El sistema debe hablar el lenguaje del usuario, con palabras y conceptos familiares en vez de jerga técnica.",
-    severidad: null,
+    severidad: 1,
     imagen: "screenshots/h02-mundoreal.png",
-    explicacion: ""
+    explicacion: "En \"Salud\", la cobertura aparece transcripta tal cual la tiene el registro oficial (\"OBRA SOCIAL DE EJECUTIVOS Y DEL PERSONAL DE DIRECCIÓN DE EMPRESAS\", en mayúsculas y sin formatear), en vez de mostrarse en el lenguaje simple que usaría la persona para referirse a su propia obra social. Es un problema menor porque no impide entender el dato, pero rompe el tono cercano del resto de la app."
   },
   {
     id: "control-libertad",
     numero: 3,
     nombre: "Control y libertad del usuario",
     definicion: "Los usuarios necesitan una 'salida de emergencia' clara para deshacer acciones o abandonar un flujo por error.",
-    severidad: null,
+    severidad: 0,
     imagen: "screenshots/h03-control.png",
-    explicacion: ""
+    explicacion: "Pantallas como \"Hijos\" (y el resto de las secciones secundarias) mantienen siempre la flecha de volver en el header, así que la persona puede salir de cualquier pantalla en cualquier momento sin tener que completar el flujo. No genera ningún impacto negativo: es una salida de emergencia constante y predecible."
   },
   {
     id: "consistencia",
     numero: 4,
     nombre: "Consistencia y estándares",
     definicion: "Los usuarios no deberían dudar si distintas palabras, situaciones o acciones significan lo mismo.",
-    severidad: null,
+    severidad: 2,
     imagen: "screenshots/h04-consistencia.png",
-    explicacion: ""
+    explicacion: "En \"Documentos\", el botón principal (\"Solicitar DNI Digital\") es de tipo outline (solo borde), mientras que el CTA equivalente en \"Hijos\" (\"Asociar un hijo/a\"), \"Turnos\" (\"Sacar turno\") o \"Cobros\" (\"Ingresar\") es un botón sólido. El usuario tiene que reinterpretar en cada pantalla qué jerarquía visual tiene la acción principal, porque el mismo tipo de acción no se ve igual en todos lados."
   },
   {
     id: "prevencion-errores",
     numero: 5,
     nombre: "Prevención de errores",
     definicion: "Es mejor prevenir que ocurra un error que generar un buen mensaje una vez que ya ocurrió.",
-    severidad: null,
+    severidad: 3,
     imagen: "screenshots/h05-prevencion.png",
-    explicacion: ""
+    explicacion: "En \"Seguridad y privacidad\", \"Eliminar cuenta\" tiene exactamente el mismo tamaño, color e ícono que \"Cambiar contraseña\": nada distingue visualmente a la acción irreversible de la inofensiva antes de tocarla. El impacto es alto porque un toque apurado o accidental puede llevar a una persona directo hacia el flujo de baja de cuenta sin ninguna advertencia previa."
   },
   {
     id: "reconocer-recordar",
     numero: 6,
     nombre: "Reconocimiento antes que recuerdo",
     definicion: "Minimizar la carga de memoria mostrando objetos, acciones y opciones visibles en vez de exigir que el usuario las recuerde.",
-    severidad: null,
+    severidad: 0,
     imagen: "screenshots/h06-reconocer.png",
-    explicacion: ""
+    explicacion: "En \"Suscribir servicios\", cada categoría (Documentos, Vehículos, Salud, Trabajo) se muestra con ícono, nombre y flecha desplegable visibles todo el tiempo, así que el usuario reconoce las opciones de un vistazo en vez de tener que recordar de memoria qué trámites puede activar. No genera fricción adicional para la persona usuaria."
   },
   {
     id: "flexibilidad",
     numero: 7,
     nombre: "Flexibilidad y eficiencia de uso",
     definicion: "Ofrecer aceleradores para usuarios expertos sin perjudicar a los usuarios novatos.",
-    severidad: null,
+    severidad: 2,
     imagen: "screenshots/h07-flexibilidad.png",
-    explicacion: ""
+    explicacion: "En \"Trámites\", la lista de beneficios se recorre solo scrolleando: no hay buscador ni filtros para saltar directo a un trámite puntual. Una persona que ya sabe lo que busca (por ejemplo la exención de peajes) tiene que scrollear igual que alguien que está explorando por primera vez, sin ningún atajo para usuarios frecuentes."
   },
   {
     id: "estetico-minimalista",
     numero: 8,
     nombre: "Diseño estético y minimalista",
     definicion: "La interfaz no debe contener información irrelevante o que se use raramente.",
-    severidad: null,
+    severidad: 0,
     imagen: "screenshots/h08-minimalista.png",
-    explicacion: ""
+    explicacion: "\"Acerca de esta aplicación\" muestra solo lo esencial: logo, versión, escudo institucional y dos botones (calificar / descargar más apps), sin información irrelevante ni elementos decorativos de más. Es una pantalla limpia que no le agrega carga cognitiva a la persona usuaria."
   },
   {
     id: "recuperacion-errores",
     numero: 9,
     nombre: "Ayudar a reconocer, diagnosticar y recuperarse de errores",
     definicion: "Los mensajes de error deben estar en lenguaje claro, indicar el problema exacto y sugerir una solución.",
-    severidad: null,
+    severidad: 3,
     imagen: "screenshots/h09-recuperacion.png",
-    explicacion: ""
+    explicacion: "En \"Vehículos\", el aviso sobre viajar al exterior sin cédula física ni patente se muestra igual para todos los usuarios, no está atado a si a esa persona realmente le falta algún documento, y en vez de resolver el problema dentro de la app manda a comunicarse por otro canal con la DNRPA. El impacto es que la persona queda sin un diagnóstico concreto de qué le pasa a ella ni una solución accionable dentro de la misma app."
   },
   {
     id: "ayuda-documentacion",
     numero: 10,
     nombre: "Ayuda y documentación",
     definicion: "La ayuda debe ser fácil de encontrar, centrada en la tarea del usuario y no demasiado extensa.",
-    severidad: null,
+    severidad: 3,
     imagen: "screenshots/h10-ayuda.png",
-    explicacion: ""
+    explicacion: "En \"Acerca de esta aplicación\" — la pantalla donde alguien buscaría ayuda sobre la app — solo hay botones para calificarla o descargar otras apps del Estado; no hay un link a centro de ayuda, preguntas frecuentes ni soporte. Alguien con una duda puntual sobre cómo usar Mi Argentina no tiene, en las pantallas relevadas, un lugar claro al que ir a buscar esa ayuda."
   }
 ];
