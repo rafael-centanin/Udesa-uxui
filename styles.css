@@ -609,6 +609,53 @@ main {
   font-family: var(--font-mono);
 }
 
+.colophon__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.colophon__inner p {
+  margin: 0;
+  flex: 1 1 0%;
+}
+
+/* ---- Download PDF button ---- */
+.download-pdf {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.65em 1.4em;
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--ink);
+  color: var(--paper-raised);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.download-pdf:hover {
+  background: var(--paper-raised);
+  color: var(--ink);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.download-pdf:active {
+  transform: scale(0.97);
+}
+
+.download-pdf svg {
+  flex-shrink: 0;
+}
+
+
 /* ============================================================
    RESPONSIVE
    ============================================================ */
